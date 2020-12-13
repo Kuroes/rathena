@@ -5553,7 +5553,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 #endif
 	case RK_DRAGONBREATH_WATER:
 	case RK_DRAGONBREATH:
-		if( tsc && tsc->data[SC_HIDING] )
+		if(map_getcell(bl->m, bl->x, bl->y, CELL_CHKLANDPROTECTOR) || tsc && tsc->data[SC_HIDING] ) //Clydoo Edits
 			clif_skill_nodamage(src,src,skill_id,skill_lv,1);
 		else {
 			skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);

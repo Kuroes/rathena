@@ -1,0 +1,194 @@
+prontera,149,177,4	script	Box Trader	869,{
+set @npcname$, "[^FF8800 Box Trader ^000000]";
+
+	mes @npcname$;
+	mes "Hello. I'm the Box Trader.";
+	mes "I can pack your stuff into boxes for easy trading!";
+	mes " ";
+	mes "Would you like me to pack some of your stuffs?";
+	next;
+	switch(select("Yes, please!","Information","Maybe next time...")) {
+		case 1:
+			mes @npcname$;
+			mes "Select what would you like to pack.";
+			next;
+			switch(select("Royal Jelly","Yggdrasil Seed","Yggdrasil Berry","Coca-Cola","Halo-Halo","Poison Bottle","Glistening Bottle","Box of Thunder","Cancel")) {
+			case 1:
+				mes @npcname$;
+                mes "How many Royal Jelly boxes do you want?";
+                next;
+                switch(select("Decide how many","Exchange all my RJ")) {
+                  case 1:
+                    input @jelly;
+                    if(countitem(526) < (10*@jelly)) goto LACK;
+                    if (@jelly <= 0) goto CANCEL;
+                    next;
+                    mes @npcname$;
+                    mes "Hmm... There you go!";
+                    delitem 526,(10*@jelly);
+                    getitem 12532,(1*@jelly);
+                    close;
+                  case 2:
+					if(countitem(526) < 10) goto LACK;
+					next;
+					mes @npcname$;
+					mes "You have a total of "+countitem(526)+" Royal Jellies in your inventory";
+					next;
+					mes @npcname$;
+					mes "Would you like to exchange your "+countitem(526)+" Royal Jellies into "+countitem(526)/10+" Royal Jelly Boxes?";
+					switch(select("Yes Please","No Thanks")) {
+					case 1:
+					next;
+					mes @npcname$;
+					mes "Here you go!";
+					getitem 12532,(countitem(526)/10);
+					delitem 526,(countitem(12532)*10);
+					close;
+					case 2:
+					close;
+					}
+					}
+			case 2:
+				mes @npcname$;
+				mes "How many Yggdrasil Seed boxes do you want?";
+				mes " ";
+				mes " ";
+				mes " ";
+				mes "Put [0] to cancel.";
+				next;
+				input @seed;
+				if(countitem(608) < (10*@seed)) goto LACK;
+				if (@seed <= 0) goto CANCEL;
+					next;
+					mes @npcname$;
+					mes "Hmm... There you go!";
+					delitem 608,(10*@seed);
+					getitem 12534,(1*@seed);
+					close;
+			case 3:
+				mes @npcname$;
+				mes "How many Yggdrasil Berry boxes do you want?";
+				mes " ";
+				mes " ";
+				mes " ";
+				mes "Put [0] to cancel.";
+				next;
+				input @berry;
+				if(countitem(607) < (10*@berry)) goto LACK;
+				if (@berry <= 0) goto CANCEL;
+					next;
+					mes @npcname$;
+					mes "Hmm... There you go!";
+					delitem 607,(10*@berry);
+					getitem 12535,(1*@berry);
+					close;
+			case 4:
+				mes @npcname$;
+				mes "How many Coca-Cola boxes do you want?";
+				mes " ";
+				mes " ";
+				mes " ";
+				mes "Put [0] to cancel.";
+				next;
+				input @cola;
+				if(countitem(11512) < (10*@cola)) goto LACK;
+				if (@cola <= 0) goto CANCEL;
+					next;
+					mes @npcname$;
+					mes "Hmm... There you go!";
+					delitem 11512,(10*@cola);
+					getitem 501,(1*@cola);
+					close;
+			case 5:
+				mes @npcname$;
+				mes "How many Halo-Halo boxes do you want?";
+				mes " ";
+				mes " ";
+				mes " ";
+				mes "Put [0] to cancel.";
+				next;
+				input @halo;
+				if(countitem(12247) < (10*@halo)) goto LACK;
+				if (@halo <= 0) goto CANCEL;
+					next;
+					mes @npcname$;
+					mes "Hmm... There you go!";
+					delitem 12247,(10*@halo);
+					getitem 501,(1*@halo);
+					close;
+			case 6:
+				mes @npcname$;
+				mes "How many Posion Bottle boxes do you want?";
+				mes " ";
+				mes " ";
+				mes " ";
+				mes "Put [0] to cancel.";
+				next;
+				input @poison;
+				if(countitem(678) < (10*@poison)) goto LACK;
+				if (@poison <= 0) goto CANCEL;
+					next;
+					mes @npcname$;
+					mes "Hmm... There you go!";
+					delitem 678,(10*@poison);
+					getitem 12550,(1*@poison);
+					close;
+			case 7:
+				mes @npcname$;
+				mes "How many Glistening Coat boxes do you want?";
+				mes " ";
+				mes " ";
+				mes " ";
+				mes "Put [0] to cancel.";
+				next;
+				input @gcoat;
+				if(countitem(7139) < (10*@gcoat)) goto LACK;
+				if (@gcoat <= 0) goto CANCEL;
+					next;
+					mes @npcname$;
+					mes "Hmm... There you go!";
+					delitem 7139,(10*@gcoat);
+					getitem 12549,(1*@gcoat);
+					close;
+			case 8:
+				mes @npcname$;
+				mes "How many Box of Thunder boxes do you want?";
+				mes " ";
+				mes " ";
+				mes " ";
+				mes "Put [0] to cancel.";
+				next;
+				input @bot;
+				if(countitem(12028) < (10*@bot)) goto LACK;
+				if (@bot <= 0) goto CANCEL;
+					next;
+					mes @npcname$;
+					mes "Hmm... There you go!";
+					delitem 12028,(10*@bot);
+					getitem 12549,(1*@bot);
+					close;
+			case 9:
+				goto CANCEL;
+			}
+		case 2:
+			mes @npcname$;
+			mes "I am the Box Trader. I am expert in packing any products that i have on my list.";
+			mes " ";
+			mes "Right now, i can pack most usables such as Healing Items.";
+			close;
+		case 3:
+			goto CANCEL;
+	}
+
+CANCEL:
+	mes @npcname$;
+	mes "Alright then!";
+	mes " ";
+	mes "If you need my services you know where to find me.";
+	close;
+
+LACK:
+	mes @npcname$;
+	mes "You trying to fool me?";
+	close;
+}
